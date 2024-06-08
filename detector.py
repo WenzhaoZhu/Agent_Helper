@@ -13,14 +13,14 @@ input_chinese = """
 
 def clean_text(text):
     """
-    Clean up the punctuations and whitespaces that may appear in the text
+    Clean up the punctuation and whitespaces that may appear in the text
 
     """
 
-    # Eliminate HTML lables and entities
+    # Eliminate HTML labels and entities
     text = re.sub(r"<.*?>", "", text)
 
-    # Subtract punctuations, including unicode characters
+    # Subtract punctuations, including Unicode characters
     translator = str.maketrans(
         {
             "\u2018": "",
@@ -77,21 +77,21 @@ def ngram_analysis(tokens, n=3):
 
 def show_repeat(in_list, k=3):
     """
-    Show all the repeated segments, 3 times of occurance by default
+    Show all the repeated segments, 3 times of occurrence by default
     """
     b = dict(Counter(in_list))
 
     # Set up value >= 3 cuz only when the times of appearance is >= 3, we count it as repetition
     output_dict = {key: value for key, value in b.items() if value >= k}
     if len(output_dict):
-        print(output_dict)  # show the repeated elements and the correspinding times
+        print(output_dict)  # show the repeated elements and the corresponding times
     else:
         print("This text doesn't contain any repetition!")
 
 
 def main():
     len_repe = 3  # Minimum length to be counted as repetition, default=3
-    times_repe = 2  # Minimum times of occurance to be counted as repetition, default=3
+    times_repe = 2  # Minimum times of occurrence to be counted as repetition, default=3
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
     three_grams = ngram_analysis(tokenized_text, len_repe)
