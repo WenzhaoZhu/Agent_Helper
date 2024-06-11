@@ -1,4 +1,7 @@
 # chinese_repetition_detector
+## Updates
+Now this program can show the number of characters in the text, excluding whitespaces only.
+
 ## Requirements
 - re
 - nltk
