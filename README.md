@@ -7,6 +7,7 @@
 python detector.py
 ```
 ## Parameters
-- **input_chinese**: the text you want to see if there is any repetition.
+- **RELA_PATH**: the path to the file.
+- **FILE_NAME**: the name of the file, "Chinese_detector.txt" by default.
 - **len_repe**: minimum length to be counted as repetition, default=3.
 - **times_repe**: minimum times of occurrence to be counted as repetition, default=3.
