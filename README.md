@@ -1,6 +1,8 @@
 # chinese_repetition_detector
 ## Updates
-Now this program can show the number of characters in the text, excluding whitespaces only.
+### June 11, 2024
+- Showing the number of characters in the text, excluding whitespaces only.
+- Import text from a file, not a variable anymore.
 
 ## Requirements
 - re
