@@ -15,7 +15,13 @@ def read_file(path):
         input_chinese = f.read()
     return input_chinese
 
-
+def NTLDetector(text):
+    for chara in text:
+        if 'A' <= chara <= 'Z' or 'a' <= chara <= 'z':
+            print("English letter --", chara, "-- detected!")
+        if chara in ":;,?!'\"()":
+            print("English punctuation --", chara, "-- detected!")
+    
 def clean_text(text):
     """
     Clean up the punctuations and whitespaces that may appear in the text
@@ -29,6 +35,9 @@ def clean_text(text):
 
     # Eliminate HTML lables and entities
     text = re.sub(r"<.*?>", "", text)
+
+    # Detect if English and some punctuation exists
+    NTLDetector(text)
 
     # Subtract punctuations, including unicode characters
     translator = str.maketrans(
@@ -46,7 +55,6 @@ def clean_text(text):
             "？": "",
             "：": "",
             "、": "",
-            "~": "",
         }
     )
     translator.update(str.maketrans("", "", string.punctuation))
