@@ -3,6 +3,7 @@
 ### June 11, 2024
 - Showing the number of characters in the text, excluding whitespaces only.
 - Importing text from a file, not a variable anymore.
+- Showing English letters and punctuation.
 
 ## Requirements
 - re
