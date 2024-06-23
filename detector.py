@@ -24,7 +24,7 @@ def NTLDetector(text):
     
 def clean_text(text):
     """
-    Clean up the punctuations and whitespaces that may appear in the text
+    Clean up the punctuation and whitespaces that may appear in the text
 
     """
 
@@ -33,13 +33,13 @@ def clean_text(text):
     # Show the number of characters in the text, without any whitespace
     print("Characters in total: ", len(text))
 
-    # Eliminate HTML lables and entities
+    # Eliminate HTML labels and entities
     text = re.sub(r"<.*?>", "", text)
 
     # Detect if English and some punctuation exists
     NTLDetector(text)
 
-    # Subtract punctuations, including unicode characters
+    # Subtract punctuations, including Unicode characters
     translator = str.maketrans(
         {
             "\u2018": "",
@@ -57,7 +57,7 @@ def clean_text(text):
             "、": "",
         }
     )
-    translator.update(str.maketrans("", "", string.punctuation))
+    translator.update(str.maketrans("", "", string.punctuation)) # type: ignore
     text = text.translate(translator)
 
     return text
@@ -99,7 +99,7 @@ def show_repeat(in_list, k=3):
     # Set up value >= 3 cuz only when the times of appearance is >= 3, we count it as repetition
     output_dict = {key: value for key, value in b.items() if value >= k}
     if len(output_dict):
-        print(output_dict)  # show the repeated elements and the correspinding times
+        print(output_dict)  # show the repeated elements and the corresponding times
     else:
         print("This text doesn't contain any repetition!")
 
