@@ -19,27 +19,36 @@ def NTLDetector(text):
     for chara in text:
         if 'A' <= chara <= 'Z' or 'a' <= chara <= 'z':
             print("English letter --", chara, "-- detected!")
-        if chara in ":;,?!'\"()":
+        if chara in ":;,.?!'\"()":
             print("English punctuation --", chara, "-- detected!")
     
 def clean_text(text):
     """
-    Clean up the punctuation and whitespaces that may appear in the text
+    Clean up the punctuations and whitespaces that may appear in the text
 
     """
+    # print("Length before eliminate white changelines: ", len(text))
 
-    # Detele extra white spaces
-    text = re.sub(r"\s+", "", text).strip()
+    # Detele extra changelines
+    text = re.sub(r"\n+", "", text).strip()
+    len_before_eli = len(text)
+
+    # Detele extra spaces
+    text = re.sub(r" +", "", text).strip()
+
     # Show the number of characters in the text, without any whitespace
+    # print("Text: ", text)
     print("Characters in total: ", len(text))
+    if len_before_eli != len(text):
+        print("There is/are -- space(s) -- in the response, check if it/they is/are legal!")
 
-    # Eliminate HTML labels and entities
+    # Eliminate HTML lables and entities
     text = re.sub(r"<.*?>", "", text)
 
     # Detect if English and some punctuation exists
     NTLDetector(text)
 
-    # Subtract punctuations, including Unicode characters
+    # Subtract punctuations, including unicode characters
     translator = str.maketrans(
         {
             "\u2018": "",
@@ -99,14 +108,14 @@ def show_repeat(in_list, k=3):
     # Set up value >= 3 cuz only when the times of appearance is >= 3, we count it as repetition
     output_dict = {key: value for key, value in b.items() if value >= k}
     if len(output_dict):
-        print(output_dict)  # show the repeated elements and the corresponding times
+        print(output_dict)  # show the repeated elements and the correspinding times
     else:
         print("This text doesn't contain any repetition!")
 
 
 def main():
     len_repe = 3  # Minimum length to be counted as repetition, default=3
-    times_repe = 3  # Minimum times of occurrence to be counted as repetition, default=3
+    times_repe = 4  # Minimum times of occurrence to be counted as repetition, default=3
     input_chinese = read_file(os.path.join(RELA_PATH, FILE_NAME))
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
