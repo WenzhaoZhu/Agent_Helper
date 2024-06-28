@@ -1,5 +1,7 @@
 # chinese_repetition_detector
 ## Updates
+### June 28, 2024
+- Detecting suspicious spaces.
 ### June 11, 2024
 - Showing the number of characters in the text, excluding whitespaces only.
 - Importing text from a file, not a variable anymore.
