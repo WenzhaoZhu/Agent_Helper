@@ -1,4 +1,4 @@
-# chinese_repetition_detector
+# Agent_Helper
 ## Updates
 ### June 28, 2024
 - Detecting suspicious spaces.
