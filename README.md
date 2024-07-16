@@ -1,5 +1,9 @@
 # Agent_Helper
 ## Updates
+### July 16, 2024
+- Adding the function of only counting 汉字.
+- Adding "few but long repetition" detections.
+- Distinguishing "short but many repetition" detections and "few but long repetition" detectuions.
 ### June 28, 2024
 - Detecting suspicious spaces.
 - The new file ```preamble_creator.py``` can show the labels of the preambles.
