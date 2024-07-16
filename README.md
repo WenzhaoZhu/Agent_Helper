@@ -29,8 +29,10 @@
 ## Parameters
 - **RELA_PATH**: the path to the file.
 - **FILE_NAME**: the name of the file, "response.txt" by default.
-- **len_repe**: minimum length to be counted as repetition, default=3.
-- **times_repe**: minimum times of occurrence to be counted as repetition, default=3.
+- **len_repe_short_but_many**: minimum length to be counted as short repetition, default=3.
+- **times_repe_short_but_many**: minimum times of occurrence to be counted as short repetition, default=3.
+- **len_repe_few_but_long**: minimum length to be counted as long repetition, default=3.
+- **times_repe_few_but_long**: minimum times of occurrence to be counted as long repetition, default=3.
 
 ## To-do
 - Complete ```preamble_creator.py```
