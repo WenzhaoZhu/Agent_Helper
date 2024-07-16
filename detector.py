@@ -16,11 +16,24 @@ def read_file(path):
     return input_chinese
 
 def NTLDetector(text):
+    count = 0
     for chara in text:
         if 'A' <= chara <= 'Z' or 'a' <= chara <= 'z':
             print("English letter --", chara, "-- detected!")
+            count = count + 1
         if chara in ":;,.?!'\"()":
             print("English punctuation --", chara, "-- detected!")
+            count = count + 1
+    print("The amount of English letters and English punc is: ", count)
+
+def other_non_cn(text):
+    count = 0
+    for chara in text:
+        if not 'A' <= chara <= 'Z' and not 'a' <= chara <= 'z' and chara not in ":;,.?!'\"()":
+            if not '\u4e00' <= chara <= '\u9fff':
+                print("Non Chinese character --", chara, "-- detected!")
+                count = count + 1
+    print("The amount of other non-Chinese characters is: ", count)
     
 def clean_text(text):
     """
@@ -38,7 +51,7 @@ def clean_text(text):
 
     # Show the number of characters in the text, without any whitespace
     # print("Text: ", text)
-    print("Characters in total: ", len(text))
+    print("Characters (without whitespaces) in total: ", len(text))
     if len_before_eli != len(text):
         print("There is/are -- space(s) -- in the response, check if it/they is/are legal!")
         print("Number of spaces: ", len_before_eli - len(text))
@@ -65,12 +78,18 @@ def clean_text(text):
             "？": "",
             "：": "",
             "、": "",
+            "（": "",
+            "）": "",
         }
     )
     translator.update(str.maketrans("", "", string.punctuation)) # type: ignore
     text = text.translate(translator)
-    print("汉字 in total: ", len(text))
-
+    other_non_cn(text)
+    count = 0
+    for a in text:
+        if '\u4e00' <= a <= '\u9fff':
+            count = count + 1
+    print("汉字 in total: ", count)
     return text
 
 
@@ -101,7 +120,7 @@ def ngram_analysis(tokens, n=3):
     return tri_grams
 
 
-def show_repeat(in_list, k=3):
+def show_repeat(in_list, r_type, k=3):
     """
     Show all the repeated segments, 3 times of occurrence by default
     """
@@ -110,11 +129,11 @@ def show_repeat(in_list, k=3):
     # Set up value >= 3 cuz only when the times of appearance is >= 3, we count it as repetition
     output_dict = {key: value for key, value in b.items() if value >= k}
     if len(output_dict):
-        print("Repetition Detected:")
+        print("Repetition of",r_type, "type detected:")
         for key, value in output_dict.items():
             print(key, ": ", value, "times!") # show the repeated elements and the correspinding times
     else:
-        print("This text doesn't contain any repetition!")
+        print("This text doesn't contain any", r_type, "repetition!")
 
     
 def main():
@@ -127,13 +146,13 @@ def main():
     len_repe_short_but_many = 4  # Minimum length to be counted as repetition, default=3
     times_repe_short_but_many = 3  # Minimum times of occurrence to be counted as repetition, default=3
     three_grams = ngram_analysis(tokenized_text, len_repe_short_but_many)
-    show_repeat(three_grams, times_repe_short_but_many)
+    show_repeat(three_grams, "short", times_repe_short_but_many)
 
     # few but long repetition
     len_repe_few_but_long= 6  # Minimum length to be counted as repetition, default=3
     times_repe_few_but_long = 2  # Minimum times of occurrence to be counted as repetition, default=3
     three_grams = ngram_analysis(tokenized_text, len_repe_few_but_long)
-    show_repeat(three_grams, times_repe_few_but_long)
+    show_repeat(three_grams, "long", times_repe_few_but_long)
 
 if __name__ == "__main__":
     main()
