@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### July 18, 2024
+- seg_char() function no longer separate English letters character by character, it takes English words as a whole now.
 ### July 16, 2024
 - Adding the function of only counting 汉字.
 - Adding "few but long repetition" detections.
