@@ -83,13 +83,19 @@ def clean_text(text):
         }
     )
     translator.update(str.maketrans("", "", string.punctuation)) # type: ignore
+
+    len_before_eli_punc = len(text)
     text = text.translate(translator)
+    num_of_punc = len_before_eli_punc - len(text)
+
     other_non_cn(text)
+
     count = 0
     for a in text:
         if '\u4e00' <= a <= '\u9fff':
             count = count + 1
     print("汉字 in total: ", count)
+    print("汉字+标点 in total: ", count + num_of_punc)
     return text
 
 
@@ -98,7 +104,7 @@ def seg_char(text):
     Tokenize Chinese characters
     """
 
-    # Note: English words will be separated char-by-char as well
+    # Note: English words won't be separated char-by-char after updating.
     pattern = re.compile(r"([\u4e00-\u9fa5])")
     chars = pattern.split(text)
     chars = [w for w in chars if len(w.strip()) > 0]
@@ -141,7 +147,6 @@ def main():
     input_chinese = read_file(os.path.join(RELA_PATH, FILE_NAME))
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
-
     # short but a lot repetition
     len_repe_short_but_many = 4  # Minimum length to be counted as repetition, default=3
     times_repe_short_but_many = 3  # Minimum times of occurrence to be counted as repetition, default=3
