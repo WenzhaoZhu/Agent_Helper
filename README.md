@@ -10,7 +10,6 @@
 - Adding the function of counting the number of English characters and other non-Chinese characters.
 ### June 28, 2024
 - Detecting suspicious spaces.
-- The new file ```preamble_creator.py``` can show the labels of the preambles.
 ### June 11, 2024
 - Showing the number of characters in the text, excluding whitespaces only.
 - Importing text from a file; it is no longer a variable.
@@ -34,6 +33,4 @@
 - **times_repe_few_but_long**: minimum times of occurrence to be counted as long repetition, default=3.
 
 ## To-do
-- Complete ```preamble_creator.py```
-  - Complete the class ```creator```
-  - Complete the instruction lists
+- Detecting Traditional Chinese
