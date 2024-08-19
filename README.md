@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### Aug 19, 2024
+- Bugs fixing
 ### July 18, 2024
 - seg_char() function no longer separates English letters character by character, it takes English words as a whole now.
 ### July 16, 2024
