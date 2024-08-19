@@ -77,9 +77,13 @@ def clean_text(text):
             "！": "",
             "？": "",
             "：": "",
+            "；": "",
             "、": "",
             "（": "",
             "）": "",
+            "《": "",
+            "》": "",
+
         }
     )
     translator.update(str.maketrans("", "", string.punctuation)) # type: ignore
@@ -147,14 +151,14 @@ def main():
     input_chinese = read_file(os.path.join(RELA_PATH, FILE_NAME))
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
-    # short but a lot repetition
+    # short but a lot repetition``
     len_repe_short_but_many = 4  # Minimum length to be counted as repetition, default=3
     times_repe_short_but_many = 3  # Minimum times of occurrence to be counted as repetition, default=3
     three_grams = ngram_analysis(tokenized_text, len_repe_short_but_many)
     show_repeat(three_grams, "short", times_repe_short_but_many)
 
     # few but long repetition
-    len_repe_few_but_long= 6  # Minimum length to be counted as repetition, default=3
+    len_repe_few_but_long= 8  # Minimum length to be counted as repetition, default=3
     times_repe_few_but_long = 2  # Minimum times of occurrence to be counted as repetition, default=3
     three_grams = ngram_analysis(tokenized_text, len_repe_few_but_long)
     show_repeat(three_grams, "long", times_repe_few_but_long)
