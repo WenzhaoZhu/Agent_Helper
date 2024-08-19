@@ -24,10 +24,7 @@
   ```
   python detector.py
   ```
-### For preamble creating:
-  ```
-  python preamble_creator.py
-  ```
+
 ## Parameters
 - **RELA_PATH**: the path to the file.
 - **FILE_NAME**: the name of the file, "response.txt" by default.
