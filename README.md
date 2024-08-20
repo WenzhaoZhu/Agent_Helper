@@ -2,6 +2,7 @@
 ## Updates
 ### Aug 19, 2024
 - Bugs fixing.
+- Now there won't be any warning if there is no English character or other non-Chinese character.
 - Traditional Chinese detecting for ```detector.py```.
 - Creating a Traditional-Chinese-Agent-Oriented detector ```detector_tc.py```.
   - Way of using is completely the same as ```detector.py```.
