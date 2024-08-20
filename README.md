@@ -4,6 +4,7 @@
 - Bugs fixing.
 - Traditional Chinese detecting for ```detector.py```.
 - Creating a Traditional-Chinese-Agent-Oriented detector ```detector_tc.py```.
+  - Way of using the completely the same as ```detector.py```.
 ### July 18, 2024
 - seg_char() function no longer separates English letters character by character, it takes English words as a whole now.
 ### July 16, 2024
