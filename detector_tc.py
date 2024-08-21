@@ -56,14 +56,14 @@ def simplified_chinese_detect(text):
     """
     Detect Simplified Chinese.
     """
-    converter = opencc.OpenCC("t2s.json")
+    converter = opencc.OpenCC("s2t.json")
     converted_chinese = converter.convert(text)
     if text != converted_chinese:
         print("WARNING -- Simplified Chinese -- Detected! Check if they are legal:")
         simp_cn = []
         for idx, _ in enumerate(text):
             if text[idx] != converted_chinese[idx]:
-                simp_cn.append(converted_chinese[idx])
+                simp_cn.append(text[idx])
         print(simp_cn)
 
 
