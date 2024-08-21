@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### Aug 20, 2024
+- Bugs fixing in ```detector_tc.py```
 ### Aug 19, 2024
 - Bugs fixing.
 - Now there won't be any warning if there is no English character or other non-Chinese character in the response.
