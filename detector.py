@@ -23,15 +23,22 @@ def NTLDetector(text):
     Detect non-Chinese characters, specifically English letters and punctuation.
     """
     count = 0
+    en_letter = []
+    en_punc = []
     for chara in text:
         if "A" <= chara <= "Z" or "a" <= chara <= "z":
-            print("English letter --", chara, "-- detected!")
+            en_letter.append(chara)
             count = count + 1
         if chara in ":;,.?!'\"()":
-            print("English punctuation --", chara, "-- detected!")
+            en_punc.append(chara)
             count = count + 1
+    print("WARNING--- [English letter] detected: ---WARNING")
+    print(en_letter)
+    print("WARNING--- [English punctuation] detected: ---WARNING")
+    print(en_punc)
+
     if count != 0:
-        print("The amount of English letters and English punc is: ", count)
+        print("SUM--- The amount of English letters and English punc is: ", count, "\n")
 
 
 def other_non_cn(text):
@@ -39,6 +46,7 @@ def other_non_cn(text):
     Detect other non-Chinese characters, such as numbers and emojis.
     """
     count = 0
+    other_non_cn = []
     for chara in text:
         if (
             not "A" <= chara <= "Z"
@@ -46,10 +54,13 @@ def other_non_cn(text):
             and chara not in ":;,.?!'\"()"
         ):
             if not "\u4e00" <= chara <= "\u9fff":
-                print("Non Chinese character --", chara, "-- detected!")
+                other_non_cn.append(chara)
                 count = count + 1
+    print("WARNING--- [Other Non-Simplified Chinese] characters detected: ---WARNING")
+    print(other_non_cn)
+
     if count != 0:
-        print("The amount of other non-Chinese characters is: ", count)
+        print("SUM--- The amount of other non-Simplified Chinese characters is: ", count, "\n")
 
 
 def traditional_chinese_detect(text):
@@ -59,12 +70,14 @@ def traditional_chinese_detect(text):
     converter = opencc.OpenCC("t2s.json")
     converted_chinese = converter.convert(text)
     if text != converted_chinese:
-        print("WARNING -- Traditional Chinese -- Detected! Check if they are legal:")
+        print("WARNING--- [Traditional Chinese] Detected! Check if they are legal: ---WARNING")
         trad_cn = []
         for idx, _ in enumerate(text):
             if text[idx] != converted_chinese[idx]:
                 trad_cn.append(text[idx])
         print(trad_cn)
+    if len(trad_cn) != 0:
+            print("SUM--- The amount of Traditional Chinese characters is: ", len(trad_cn), "\n")
 
 
 def clean_text(text):
@@ -82,12 +95,12 @@ def clean_text(text):
 
     # Show the number of characters in the text, without any whitespace
     # print("Text: ", text)
-    print("Characters (without whitespaces) in total: ", len(text))
+    print("COUNT--- Characters (without whitespaces) in total: ", len(text))
     if len_before_eli != len(text):
         print(
-            "There is/are -- space(s) -- in the response, check if it/they is/are legal!"
+            "WARNING--- [Space(s)] detected, check if it/they is/are legal! ---WARNING"
         )
-        print("Number of spaces: ", len_before_eli - len(text))
+        print("SUM--- Number of spaces: ", len_before_eli - len(text), "\n")
 
     # Eliminate HTML lables and entities
     text = re.sub(r"<.*?>", "", text)
@@ -132,8 +145,8 @@ def clean_text(text):
         if "\u4e00" <= a <= "\u9fff":
             count = count + 1
 
-    print("汉字 in total: ", count)
-    print("汉字+标点 in total: ", count + num_of_punc)
+    print("COUNT--- 汉字 in total: ", count)
+    print("COUNT--- 汉字 and 标点 in total: ", count + num_of_punc, "\n")
 
     return text
 
@@ -174,13 +187,13 @@ def show_repeat(in_list, r_type, k=3):
     # Set up value >= 3 cuz only when the times of appearance is >= 3, we count it as repetition
     output_dict = {key: value for key, value in b.items() if value >= k}
     if len(output_dict):
-        print("Repetition of", r_type, "type detected:")
+        print("WARNING--- Repetition of", r_type, "type detected: ---WARNING")
         for key, value in output_dict.items():
             print(
                 key, ": ", value, "times!"
             )  # show the repeated elements and the correspinding times
     else:
-        print("This text doesn't contain any", r_type, "repetition!")
+        print("SUM--- This text doesn't contain any", r_type, "repetition!")
 
 
 def main():
@@ -188,7 +201,7 @@ def main():
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
     # short but a lot repetition
-    len_repe_short_but_many = 4  # Minimum length to be counted as repetition, default=3
+    len_repe_short_but_many = 3  # Minimum length to be counted as repetition, default=3
     times_repe_short_but_many = (
         3  # Minimum times of occurrence to be counted as repetition, default=3
     )
