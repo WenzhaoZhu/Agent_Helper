@@ -2,6 +2,11 @@
 ## Updates
 ### Aug 24, 2024
 - Optimizing the output format for the detectors.
+  - Adding labels for outputs:
+    - WARNING
+    - COUNT
+    - SUM
+- Updating the demo response for test.
 ### Aug 20, 2024
 - Bugs fixing in ```detector_tc.py```
 ### Aug 19, 2024
