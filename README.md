@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### Aug 24, 2024
+- Optimizing the output format for the detectors.
 ### Aug 20, 2024
 - Bugs fixing in ```detector_tc.py```
 ### Aug 19, 2024
