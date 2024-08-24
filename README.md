@@ -43,5 +43,5 @@
 - **len_repe_few_but_long**: minimum length to be counted as long repetition, default=3.
 - **times_repe_few_but_long**: minimum times of occurrence to be counted as long repetition, default=3.
 
-## To-do
+## To-do/Feedback from users
 - GUI
