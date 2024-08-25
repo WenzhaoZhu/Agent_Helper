@@ -22,23 +22,28 @@ def NTLDetector(text):
     """
     Detect non-Chinese characters, specifically English letters and punctuation.
     """
-    count = 0
+    count_en_letter = 0
+    count_en_punc = 0
+
     en_letter = []
     en_punc = []
     for chara in text:
         if "A" <= chara <= "Z" or "a" <= chara <= "z":
             en_letter.append(chara)
-            count = count + 1
+            count_en_letter = count_en_letter + 1
         if chara in ":;,.?!'\"()":
             en_punc.append(chara)
-            count = count + 1
-    print("WARNING--- [English letter] detected: ---WARNING")
-    print(en_letter)
-    print("WARNING--- [English punctuation] detected: ---WARNING")
-    print(en_punc)
+            count_en_punc = count_en_punc + 1
 
-    if count != 0:
-        print("SUM--- The amount of English letters and English punc is: ", count, "\n")
+
+    if count_en_letter:
+        print("WARNING--- [English letter] detected: ---WARNING")
+        print(en_letter)
+    if count_en_punc:
+        print("WARNING--- [English punctuation] detected: ---WARNING")
+        print(en_punc)
+    if count_en_letter + count_en_punc:
+        print("SUM--- The amount of English letters and English punc is: ", count_en_letter + count_en_punc, "\n")
 
 
 def other_non_cn(text):
@@ -56,10 +61,10 @@ def other_non_cn(text):
             if not "\u4e00" <= chara <= "\u9fff":
                 other_non_cn.append(chara)
                 count = count + 1
-    print("WARNING--- [Other non-Traditional Chinese] characters detected: ---WARNING")
-    print(other_non_cn)
 
-    if count != 0:
+    if count:
+        print("WARNING--- [Other non-Traditional Chinese] characters detected: ---WARNING")
+        print(other_non_cn)
         print("SUM--- The amount of other non-Traditional Chinese characters is: ", count, "\n")
 
 
@@ -69,15 +74,14 @@ def simplified_chinese_detect(text):
     """
     converter = opencc.OpenCC("s2t.json")
     converted_chinese = converter.convert(text)
+    simp_cn = []
     if text != converted_chinese:
         print("WARNING--- [Simplified Chinese] Detected! Check if they are legal: ---WARNING")
-        simp_cn = []
         for idx, _ in enumerate(text):
             if text[idx] != converted_chinese[idx]:
                 simp_cn.append(text[idx])
         print(simp_cn)
-        if len(simp_cn) != 0:
-            print("SUM--- The amount of Simplified Chinese characters is: ", len(simp_cn), "\n")
+        print("SUM--- The amount of Simplified Chinese characters is: ", len(simp_cn), "\n")
 
 
 def clean_text(text):
@@ -146,7 +150,7 @@ def clean_text(text):
             count = count + 1
 
     print("COUNT--- 漢字 in total: ", count)
-    print("COUNT--- 漢字 and 標點 in total: ", count + num_of_punc)
+    print("COUNT--- 漢字 and 標點 in total: ", count + num_of_punc, "\n")
 
     return text
 
@@ -193,7 +197,7 @@ def show_repeat(in_list, r_type, k=3):
                 key, ": ", value, "times!"
             )  # show the repeated elements and the correspinding times
     else:
-        print("SUM--- This text doesn't contain any", r_type, "repetition!")
+        print("SUM--- No", r_type, "repetition found!")
 
 
 def main():
