@@ -35,9 +35,13 @@
 - nltk
 - opencc
 ## Run
-### For response analysis：
+### For Simplified Chinese agents：
   ```
   python detector.py
+  ```
+### For Traditional Chinese agents:
+  ```
+  python detector_tc.py
   ```
 
 ## Parameters
