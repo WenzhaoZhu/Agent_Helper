@@ -1,12 +1,15 @@
 # Agent_Helper
 ## Updates
 ### Aug 24, 2024
+- Fixing the issue of not being able to show the Traditional Chinese in ```detector.py```
+- Fixing the issue of not being able to show the Simplified Chinese in ```detector_tc.py```
+### Aug 24, 2024
 - Optimizing the output format for the detectors.
   - Adding labels for outputs:
     - WARNING
     - COUNT
     - SUM
-- Updating the demo response for test.
+- Updating the demo response for the test.
 ### Aug 20, 2024
 - Bugs fixing in ```detector_tc.py```
 ### Aug 19, 2024
