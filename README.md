@@ -1,6 +1,6 @@
 # Agent_Helper
 ## Updates
-### Aug 24, 2024
+### Aug 25, 2024
 - Fixing the issue of not being able to show the Traditional Chinese in ```detector.py```
 - Fixing the issue of not being able to show the Simplified Chinese in ```detector_tc.py```
 ### Aug 24, 2024
