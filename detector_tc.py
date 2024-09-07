@@ -35,7 +35,7 @@ def NTLDetector(text):
             en_punc.append(chara)
             count_en_punc = count_en_punc + 1
         if chara == "-" and text[idx-1] in "1234567890" and text[idx+1] in "1234567890":
-            print("WARNING--- [Suspecious dash] detected! Check if it is legal! --- WARNING")
+            print("WARNING--- [Suspicious dash] detected! Check if it is legal! --- WARNING")
 
 
     if count_en_letter:
