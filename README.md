@@ -59,4 +59,3 @@
 
 ## To-do/Feedback from users
 - GUI
-- "-" connects two numbers detection.
