@@ -27,13 +27,15 @@ def NTLDetector(text):
 
     en_letter = []
     en_punc = []
-    for chara in text:
+    for idx, chara in enumerate(text):
         if "A" <= chara <= "Z" or "a" <= chara <= "z":
             en_letter.append(chara)
             count_en_letter = count_en_letter + 1
         if chara in ":;,.?!'\"()":
             en_punc.append(chara)
             count_en_punc = count_en_punc + 1
+        if chara == "-" and text[idx-1] in "1234567890" and text[idx+1] in "1234567890":
+            print("WARNING--- [Suspecious dash] detected! Check if it is legal! --- WARNING")
 
 
     if count_en_letter:
@@ -197,7 +199,7 @@ def show_repeat(in_list, r_type, k=3):
             print(
                 key, ": ", value, "times!"
             )  # show the repeated elements and the correspinding times
-    else:
+    else:   
         print("SUM--- No", r_type, "repetition found!")
 
 
@@ -206,7 +208,7 @@ def main():
     cleaned_text = clean_text(input_chinese)
     tokenized_text = seg_char(cleaned_text)
     # short but a lot repetition
-    len_repe_short_but_many = 3  # Minimum length to be counted as repetition, default=3
+    len_repe_short_but_many = 4   # Minimum length to be counted as repetition, default=3
     times_repe_short_but_many = (
         3  # Minimum times of occurrence to be counted as repetition, default=3
     )

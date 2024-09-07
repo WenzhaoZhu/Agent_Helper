@@ -27,13 +27,15 @@ def NTLDetector(text):
 
     en_letter = []
     en_punc = []
-    for chara in text:
+    for idx, chara in enumerate(text):
         if "A" <= chara <= "Z" or "a" <= chara <= "z":
             en_letter.append(chara)
             count_en_letter = count_en_letter + 1
         if chara in ":;,.?!'\"()":
             en_punc.append(chara)
             count_en_punc = count_en_punc + 1
+        if chara == "-" and text[idx-1] in "1234567890" and text[idx+1] in "1234567890":
+            print("WARNING--- [Suspecious dash] detected! Check if it is legal! --- WARNING")
 
 
     if count_en_letter:
