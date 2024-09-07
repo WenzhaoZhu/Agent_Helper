@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### Sept 7, 2024
+- Adding function: detecting suspicious dash "-", only when the previous character and the later character are both numbers can the "-" be taken as suspicious.
 ### Aug 25, 2024
 - Fixing the issue of not being able to show the Traditional Chinese in ```detector.py```
 - Fixing the issue of not being able to show the Simplified Chinese in ```detector_tc.py```
