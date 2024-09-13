@@ -59,3 +59,4 @@
 
 ## To-do/Feedback from users
 - GUI
+- Emoji character calcualtor
