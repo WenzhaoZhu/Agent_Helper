@@ -1,5 +1,7 @@
 # Agent_Helper
 ## Updates
+### Sept 19, 2024
+- Adding the function of counting emojis so that 1 emoji = 2 characters can be applied.
 ### Sept 7, 2024
 - Adding function: detecting suspicious dash "-", only when the previous character and the later character are both numbers can the "-" be taken as suspicious.
 ### Aug 25, 2024
@@ -59,4 +61,3 @@
 
 ## To-do/Feedback from users
 - GUI
-- Emoji character calcualtor
