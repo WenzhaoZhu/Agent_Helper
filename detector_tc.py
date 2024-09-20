@@ -34,9 +34,14 @@ def NTLDetector(text):
         if chara in ":;,.?!'\"()":
             en_punc.append(chara)
             count_en_punc = count_en_punc + 1
-        if chara == "-" and text[idx-1] in "1234567890" and text[idx+1] in "1234567890":
-            print("WARNING--- [Suspicious dash] detected! Check if it is legal! --- WARNING")
-
+        if (
+            chara == "-"
+            and text[idx - 1] in "1234567890"
+            and text[idx + 1] in "1234567890"
+        ):
+            print(
+                "WARNING--- [Suspicious dash] detected! Check if it is legal! --- WARNING\n"
+            )
 
     if count_en_letter:
         print("WARNING--- [English letter] detected: ---WARNING")
@@ -45,7 +50,11 @@ def NTLDetector(text):
         print("WARNING--- [English punctuation] detected: ---WARNING")
         print(en_punc)
     if count_en_letter + count_en_punc:
-        print("SUM--- The amount of English letters and English punc is: ", count_en_letter + count_en_punc, "\n")
+        print(
+            "SUM--- The amount of English letters and English punc is: ",
+            count_en_letter + count_en_punc,
+            "\n",
+        )
 
 
 def other_non_cn(text):
@@ -65,9 +74,15 @@ def other_non_cn(text):
                 count = count + 1
 
     if count:
-        print("WARNING--- [Other non-Traditional Chinese] characters detected: ---WARNING")
+        print(
+            "WARNING--- [Other non-Traditional Chinese] characters detected: ---WARNING"
+        )
         print(other_non_cn)
-        print("SUM--- The amount of other non-Traditional Chinese characters is: ", count, "\n")
+        print(
+            "SUM--- The amount of other non-Traditional Chinese characters is: ",
+            count,
+            "\n",
+        )
 
 
 def simplified_chinese_detect(text):
@@ -78,12 +93,40 @@ def simplified_chinese_detect(text):
     converted_chinese = converter.convert(text)
     simp_cn = []
     if text != converted_chinese:
-        print("WARNING--- [Simplified Chinese] Detected! Check if they are legal: ---WARNING")
+        print(
+            "WARNING--- [Simplified Chinese] Detected! Check if they are legal: ---WARNING"
+        )
         for idx, _ in enumerate(text):
             if text[idx] != converted_chinese[idx]:
                 simp_cn.append(text[idx])
         print(simp_cn)
-        print("SUM--- The amount of Simplified Chinese characters is: ", len(simp_cn), "\n")
+        print(
+            "SUM--- The amount of Simplified Chinese characters is: ",
+            len(simp_cn),
+            "\n",
+        )
+
+
+def count_emoji(content):
+    """
+    Count the number of emojis so that it's more accurate when counting characters
+    [one emoji = two characters]
+    """
+    try:
+        # Wide UCS-4 build
+        cont = re.compile(
+            "[" "\U0001f300-\U0001f64f" "\U0001f680-\U0001f6ff" "\u2600-\u2b55]+"
+        )
+    except re.error:
+        # Narrow UCS-2 build
+        cont = re.compile(
+            "("
+            "\ud83c[\udf00-\udfff]|"
+            "\ud83d[\udc00-\ude4f\ude80-\udeff]|"
+            "[\u2600-\u2b55])+"
+        )
+
+    return len(content) - len(cont.sub("", content))
 
 
 def clean_text(text):
@@ -101,7 +144,10 @@ def clean_text(text):
 
     # Show the number of characters in the text, without any whitespace
     # print("Text: ", text)
-    print("COUNT--- Characters (without whitespaces) in total: ", len(text))
+    print(
+        "COUNT--- Characters (without whitespaces) in total: ",
+        len(text) + count_emoji(text),
+    )
     if len_before_eli != len(text):
         print(
             "WARNING--- [Space(s)] detected, check if it/they is/are legal! ---WARNING"
