@@ -27,6 +27,7 @@ def NTLDetector(text):
 
     en_letter = []
     en_punc = []
+    flag_dash = 0
     for idx, chara in enumerate(text):
         if "A" <= chara <= "Z" or "a" <= chara <= "z":
             en_letter.append(chara)
@@ -38,10 +39,12 @@ def NTLDetector(text):
             chara == "-"
             and text[idx - 1] in "1234567890"
             and text[idx + 1] in "1234567890"
+            and flag_dash == 0
         ):
             print(
                 "WARNING--- [Suspicious dash] detected! Check if it is legal! --- WARNING\n"
             )
+            flag_dash = 1
 
     if count_en_letter:
         print("WARNING--- [English letter] detected: ---WARNING")
@@ -68,6 +71,7 @@ def other_non_cn(text):
             not "A" <= chara <= "Z"
             and not "a" <= chara <= "z"
             and chara not in ":;,.?!'\"()"
+            and chara not in "12345677890"
         ):
             if not "\u4e00" <= chara <= "\u9fff":
                 other_non_cn.append(chara)
