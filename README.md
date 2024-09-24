@@ -1,5 +1,8 @@
 # Agent_Helper
 ## Updates
+### Sept 24, 2024
+- Numbers will no longer be detected as NTL.
+- Fixing the issue of repeatedly presenting warnings for detecting dashes.
 ### Sept 19, 2024
 - Adding the function of counting emojis so that 1 emoji = 2 characters can be applied.
 ### Sept 7, 2024
