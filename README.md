@@ -64,3 +64,4 @@
 
 ## To-do/Feedback from users
 - GUI
+- Formal/Informal consistency detection
